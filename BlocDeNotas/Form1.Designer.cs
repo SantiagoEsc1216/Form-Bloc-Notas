@@ -48,6 +48,7 @@ namespace BlocDeNotas
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.FileName_Text = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tool_StatusTag = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.tool_OpenButton = new System.Windows.Forms.ToolStripButton();
             this.tool_SaveButton = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +63,6 @@ namespace BlocDeNotas
             this.tool_SearchButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.textBox = new System.Windows.Forms.TextBox();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -132,26 +132,28 @@ namespace BlocDeNotas
             // 
             // Menu_UndoButton
             // 
+            this.Menu_UndoButton.Enabled = false;
             this.Menu_UndoButton.Name = "Menu_UndoButton";
-            this.Menu_UndoButton.Size = new System.Drawing.Size(122, 22);
+            this.Menu_UndoButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_UndoButton.Text = "Deshacer";
+            this.Menu_UndoButton.Click += new System.EventHandler(this.Menu_UndoButton_Click);
             // 
             // Menu_CutButton
             // 
             this.Menu_CutButton.Name = "Menu_CutButton";
-            this.Menu_CutButton.Size = new System.Drawing.Size(122, 22);
+            this.Menu_CutButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_CutButton.Text = "Cortar";
             // 
             // Menu_CopyButton
             // 
             this.Menu_CopyButton.Name = "Menu_CopyButton";
-            this.Menu_CopyButton.Size = new System.Drawing.Size(122, 22);
+            this.Menu_CopyButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_CopyButton.Text = "Copiar";
             // 
             // Menu_PasteButton
             // 
             this.Menu_PasteButton.Name = "Menu_PasteButton";
-            this.Menu_PasteButton.Size = new System.Drawing.Size(122, 22);
+            this.Menu_PasteButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_PasteButton.Text = "Pegar";
             // 
             // buscarToolStripMenuItem
@@ -181,7 +183,7 @@ namespace BlocDeNotas
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileName_Text,
             this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
+            this.tool_StatusTag});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 22);
@@ -200,6 +202,14 @@ namespace BlocDeNotas
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tool_StatusTag
+            // 
+            this.tool_StatusTag.Enabled = false;
+            this.tool_StatusTag.Name = "tool_StatusTag";
+            this.tool_StatusTag.Size = new System.Drawing.Size(111, 17);
+            this.tool_StatusTag.Text = "Estado:  Sin guardar";
+            this.tool_StatusTag.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
             // toolStrip
             // 
@@ -260,6 +270,7 @@ namespace BlocDeNotas
             // tool_UndoButton
             // 
             this.tool_UndoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tool_UndoButton.Enabled = false;
             this.tool_UndoButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_UndoButton.Image")));
             this.tool_UndoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_UndoButton.Name = "tool_UndoButton";
@@ -327,13 +338,7 @@ namespace BlocDeNotas
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(800, 379);
             this.textBox.TabIndex = 3;
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
+            this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // Principal
             // 
@@ -396,7 +401,7 @@ namespace BlocDeNotas
         private System.Windows.Forms.ToolStripMenuItem Menu_SearchButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel tool_StatusTag;
     }
 }
 

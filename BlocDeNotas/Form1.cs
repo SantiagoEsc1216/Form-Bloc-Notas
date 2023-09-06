@@ -15,6 +15,7 @@ namespace BlocDeNotas
     {
         OpenFileDialog OFD= new OpenFileDialog(); //Nos ayudara abrir un archivo 
         SaveFileDialog SFD = new SaveFileDialog(); //Nos ayudara a guardar como un archivo
+        Queue<string> Text_History = new Queue<string>(); //Nos ayudara a almacenar el historial de versiones
 
         string FileName; //Guardara el nombre del archivo que este abierto
         public Principal()
@@ -27,7 +28,7 @@ namespace BlocDeNotas
 
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ediciónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,6 +38,7 @@ namespace BlocDeNotas
 
         private void tool_UndoButton_Click(object sender, EventArgs e)
         {
+            Undo();
         }
 
         private void tool_SaveButton_Click(object sender, EventArgs e)
@@ -80,7 +82,29 @@ namespace BlocDeNotas
         {
             SaveAs();
         }
-
+        private void Cut()
+        {
+            textBox.Cut();
+        }
+        private void Paste()
+        {
+            textBox.Paste();
+        }
+        private void Copy()
+        {
+            textBox.Copy();
+        }
+        private void Undo()
+        {
+            //Verificar si hay elementos en la cola
+            if(Text_History.Count > 0)
+            {
+                //Sacar el ultimo cambio de la cola 
+                 string lastText = Text_History.Dequeue(); 
+                //Aplicar el ultimo cambio
+                 textBox.Text = lastText;   
+            }
+        }
         private void Menu_SaveAsButton_Click(object sender, EventArgs e)
         {
             SaveAs();
@@ -109,6 +133,24 @@ namespace BlocDeNotas
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            //Obtener el texto actual
+            string text = textBox.Text;
+            //Almacenar en el historial
+            Text_History.Enqueue(text);
+            if(Text_History != null)
+            {
+                tool_UndoButton.Enabled = true;
+                Menu_UndoButton.Enabled = true; 
+            }
+        }
+
+        private void Menu_UndoButton_Click(object sender, EventArgs e)
+        {
+            Undo();
         }
     }
 }
