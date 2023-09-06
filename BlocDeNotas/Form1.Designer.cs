@@ -47,6 +47,7 @@ namespace BlocDeNotas
             this.Menu_SearchButton = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.FileName_Text = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.tool_OpenButton = new System.Windows.Forms.ToolStripButton();
             this.tool_SaveButton = new System.Windows.Forms.ToolStripButton();
@@ -61,7 +62,7 @@ namespace BlocDeNotas
             this.tool_SearchButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.textBox = new System.Windows.Forms.TextBox();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -179,7 +180,8 @@ namespace BlocDeNotas
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileName_Text,
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 22);
@@ -193,6 +195,11 @@ namespace BlocDeNotas
             this.FileName_Text.Size = new System.Drawing.Size(121, 17);
             this.FileName_Text.Text = "Dirección del archivo:";
             this.FileName_Text.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStrip
             // 
@@ -321,10 +328,12 @@ namespace BlocDeNotas
             this.textBox.Size = new System.Drawing.Size(800, 379);
             this.textBox.TabIndex = 3;
             // 
-            // toolStripStatusLabel1
+            // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
             // Principal
             // 
@@ -387,6 +396,7 @@ namespace BlocDeNotas
         private System.Windows.Forms.ToolStripMenuItem Menu_SearchButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }
 
