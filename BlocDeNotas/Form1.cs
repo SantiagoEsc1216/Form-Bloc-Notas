@@ -76,6 +76,7 @@ namespace BlocDeNotas
             else
             {
                 File.WriteAllText(FileName, textBox.Text);
+                Change_StatusLabel();
             }
         }
         private void SaveAs()
@@ -85,8 +86,12 @@ namespace BlocDeNotas
                 File.WriteAllText(SFD.FileName, textBox.Text);
                 FileName = SFD.FileName;
                 FileName_Text.Text = "Dirección del archivo: " + FileName;
+            Change_StatusLabel();
         }
-
+        private void Change_StatusLabel()
+        {
+            tool_StatusTag.Text = "Estado: Guardado";
+        }
         private void tool_SaveAsButton_Click(object sender, EventArgs e)
         {
             SaveAs();
@@ -210,8 +215,8 @@ namespace BlocDeNotas
                 MessageBox.Show("No se pudo acceder al portapapeles. Inténtalo de nuevo más tarde.");
             }
 
+            tool_StatusTag.Text = "Estado: Sin guardar";
 
-            
         }
 
         private void Menu_UndoButton_Click(object sender, EventArgs e)
