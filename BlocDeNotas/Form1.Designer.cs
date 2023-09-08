@@ -100,6 +100,7 @@ namespace BlocDeNotas
             // 
             // Menu_SaveButton
             // 
+            this.Menu_SaveButton.Enabled = false;
             this.Menu_SaveButton.Name = "Menu_SaveButton";
             this.Menu_SaveButton.Size = new System.Drawing.Size(150, 22);
             this.Menu_SaveButton.Text = "Guardar";
@@ -107,6 +108,7 @@ namespace BlocDeNotas
             // 
             // Menu_SaveAsButton
             // 
+            this.Menu_SaveAsButton.Enabled = false;
             this.Menu_SaveAsButton.Name = "Menu_SaveAsButton";
             this.Menu_SaveAsButton.Size = new System.Drawing.Size(150, 22);
             this.Menu_SaveAsButton.Text = "Guardar como";
@@ -140,21 +142,26 @@ namespace BlocDeNotas
             // 
             // Menu_CutButton
             // 
+            this.Menu_CutButton.Enabled = false;
             this.Menu_CutButton.Name = "Menu_CutButton";
             this.Menu_CutButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_CutButton.Text = "Cortar";
+            this.Menu_CutButton.Click += new System.EventHandler(this.Menu_CutButton_Click);
             // 
             // Menu_CopyButton
             // 
+            this.Menu_CopyButton.Enabled = false;
             this.Menu_CopyButton.Name = "Menu_CopyButton";
             this.Menu_CopyButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_CopyButton.Text = "Copiar";
+            this.Menu_CopyButton.Click += new System.EventHandler(this.Menu_CopyButton_Click);
             // 
             // Menu_PasteButton
             // 
             this.Menu_PasteButton.Name = "Menu_PasteButton";
             this.Menu_PasteButton.Size = new System.Drawing.Size(180, 22);
             this.Menu_PasteButton.Text = "Pegar";
+            this.Menu_PasteButton.Click += new System.EventHandler(this.Menu_PasteButton_Click);
             // 
             // buscarToolStripMenuItem
             // 
@@ -167,13 +174,16 @@ namespace BlocDeNotas
             // 
             // Menu_SearchBox
             // 
+            this.Menu_SearchBox.Enabled = false;
             this.Menu_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Menu_SearchBox.Name = "Menu_SearchBox";
             this.Menu_SearchBox.Size = new System.Drawing.Size(100, 23);
             this.Menu_SearchBox.Text = "Ingrese texto";
+            this.Menu_SearchBox.TextChanged += new System.EventHandler(this.Menu_SearchBox_TextChanged);
             // 
             // Menu_SearchButton
             // 
+            this.Menu_SearchButton.Enabled = false;
             this.Menu_SearchButton.Name = "Menu_SearchButton";
             this.Menu_SearchButton.Size = new System.Drawing.Size(160, 22);
             this.Menu_SearchButton.Text = "Buscar";
@@ -213,6 +223,7 @@ namespace BlocDeNotas
             // 
             // toolStrip
             // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(25, 25);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tool_OpenButton,
             this.tool_SaveButton,
@@ -228,7 +239,7 @@ namespace BlocDeNotas
             this.toolStripSeparator3});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip.Size = new System.Drawing.Size(800, 32);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -238,34 +249,36 @@ namespace BlocDeNotas
             this.tool_OpenButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_OpenButton.Image")));
             this.tool_OpenButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_OpenButton.Name = "tool_OpenButton";
-            this.tool_OpenButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_OpenButton.Text = "toolStripButton1";
+            this.tool_OpenButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_OpenButton.Text = "Abrir archivo";
             this.tool_OpenButton.Click += new System.EventHandler(this.tool_OpenButton_Click);
             // 
             // tool_SaveButton
             // 
             this.tool_SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tool_SaveButton.Enabled = false;
             this.tool_SaveButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_SaveButton.Image")));
             this.tool_SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_SaveButton.Name = "tool_SaveButton";
-            this.tool_SaveButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_SaveButton.Text = "toolStripButton2";
+            this.tool_SaveButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_SaveButton.Text = "Guardar archivo";
             this.tool_SaveButton.Click += new System.EventHandler(this.tool_SaveButton_Click);
             // 
             // tool_SaveAsButton
             // 
             this.tool_SaveAsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tool_SaveAsButton.Enabled = false;
             this.tool_SaveAsButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_SaveAsButton.Image")));
             this.tool_SaveAsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_SaveAsButton.Name = "tool_SaveAsButton";
-            this.tool_SaveAsButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_SaveAsButton.Text = "toolStripButton3";
+            this.tool_SaveAsButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_SaveAsButton.Text = "Guardar como";
             this.tool_SaveAsButton.Click += new System.EventHandler(this.tool_SaveAsButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
             // 
             // tool_UndoButton
             // 
@@ -274,27 +287,31 @@ namespace BlocDeNotas
             this.tool_UndoButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_UndoButton.Image")));
             this.tool_UndoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_UndoButton.Name = "tool_UndoButton";
-            this.tool_UndoButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_UndoButton.Text = "toolStripButton4";
+            this.tool_UndoButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_UndoButton.Text = "Deshacer";
             this.tool_UndoButton.Click += new System.EventHandler(this.tool_UndoButton_Click);
             // 
             // tool_CutButton
             // 
             this.tool_CutButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tool_CutButton.Enabled = false;
             this.tool_CutButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_CutButton.Image")));
             this.tool_CutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_CutButton.Name = "tool_CutButton";
-            this.tool_CutButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_CutButton.Text = "toolStripButton5";
+            this.tool_CutButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_CutButton.Text = "Cortar";
+            this.tool_CutButton.Click += new System.EventHandler(this.tool_CutButton_Click);
             // 
             // tool_CopyButton
             // 
             this.tool_CopyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tool_CopyButton.Enabled = false;
             this.tool_CopyButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_CopyButton.Image")));
             this.tool_CopyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_CopyButton.Name = "tool_CopyButton";
-            this.tool_CopyButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_CopyButton.Text = "toolStripButton6";
+            this.tool_CopyButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_CopyButton.Text = "Copiar";
+            this.tool_CopyButton.Click += new System.EventHandler(this.tool_CopyButton_Click);
             // 
             // tool_PasteButton
             // 
@@ -302,41 +319,46 @@ namespace BlocDeNotas
             this.tool_PasteButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_PasteButton.Image")));
             this.tool_PasteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_PasteButton.Name = "tool_PasteButton";
-            this.tool_PasteButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_PasteButton.Text = "toolStripButton7";
+            this.tool_PasteButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_PasteButton.Text = "Pegar";
+            this.tool_PasteButton.Click += new System.EventHandler(this.tool_PasteButton_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 32);
             // 
             // tool_SearchBox
             // 
+            this.tool_SearchBox.Enabled = false;
             this.tool_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tool_SearchBox.Name = "tool_SearchBox";
-            this.tool_SearchBox.Size = new System.Drawing.Size(100, 25);
+            this.tool_SearchBox.Size = new System.Drawing.Size(100, 32);
+            this.tool_SearchBox.Click += new System.EventHandler(this.tool_SearchBox_Click);
+            this.tool_SearchBox.TextChanged += new System.EventHandler(this.tool_SearchBox_TextChanged);
             // 
             // tool_SearchButton
             // 
             this.tool_SearchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tool_SearchButton.Enabled = false;
             this.tool_SearchButton.Image = ((System.Drawing.Image)(resources.GetObject("tool_SearchButton.Image")));
             this.tool_SearchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tool_SearchButton.Name = "tool_SearchButton";
-            this.tool_SearchButton.Size = new System.Drawing.Size(23, 22);
-            this.tool_SearchButton.Text = "toolStripButton8";
+            this.tool_SearchButton.Size = new System.Drawing.Size(29, 29);
+            this.tool_SearchButton.Text = "Buscar";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
             // 
             // textBox
             // 
             this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox.Location = new System.Drawing.Point(0, 49);
+            this.textBox.Location = new System.Drawing.Point(0, 56);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(800, 379);
+            this.textBox.Size = new System.Drawing.Size(800, 372);
             this.textBox.TabIndex = 3;
             this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
