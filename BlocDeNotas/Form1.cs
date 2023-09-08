@@ -15,7 +15,6 @@ namespace BlocDeNotas
     {
         OpenFileDialog OFD= new OpenFileDialog(); //Nos ayudara abrir un archivo 
         SaveFileDialog SFD = new SaveFileDialog(); //Nos ayudara a guardar como un archivo
-        Queue<string> Text_History = new Queue<string>(); //Nos ayudara a almacenar el historial de versiones
         string FileName; //Guardara el nombre del archivo que este abierto
 
         public Principal()
@@ -106,34 +105,30 @@ namespace BlocDeNotas
         }
         private void Undo()
         {
-            //Verificar si hay elementos en la cola
-            if(Text_History.Count > 0)
+            textBox.Undo();
+            if (textBox.Text == null)
             {
-                //Sacar el ultimo cambio de la cola 
-                 string lastText = Text_History.Dequeue(); 
-                //Aplicar el ultimo cambio
-                 textBox.Text = lastText;   
-                if(textBox.Text ==null) {
-                    tool_UndoButton.Enabled = false;
-                    Menu_UndoButton.Enabled = false;
-                    //Botones de cortar
-                    tool_CutButton.Enabled = false;
-                    Menu_CutButton.Enabled = false;
-                    //Botones de copiar
-                    tool_CopyButton.Enabled = false;
-                    Menu_CopyButton.Enabled = false;
-                    //Botones de buscar
-                    tool_SearchBox.Enabled = false;
-                    Menu_SearchBox.Enabled = false;
-                    //Botones de guardar como
-                    tool_SaveAsButton.Enabled = false;
-                    Menu_SaveAsButton.Enabled = false;
-                    //Botones de guardar
-                    tool_SaveButton.Enabled = false;
-                    Menu_SaveButton.Enabled = false;
-                }
+                tool_UndoButton.Enabled = false;
+                Menu_UndoButton.Enabled = false;
+                //Botones de cortar
+                tool_CutButton.Enabled = false;
+                Menu_CutButton.Enabled = false;
+                //Botones de copiar
+                tool_CopyButton.Enabled = false;
+                Menu_CopyButton.Enabled = false;
+                //Botones de buscar
+                tool_SearchBox.Enabled = false;
+                Menu_SearchBox.Enabled = false;
+                //Botones de guardar como
+                tool_SaveAsButton.Enabled = false;
+                Menu_SaveAsButton.Enabled = false;
+                //Botones de guardar
+                tool_SaveButton.Enabled = false;
+                Menu_SaveButton.Enabled = false;
+
             }
         }
+
         private void Menu_SaveAsButton_Click(object sender, EventArgs e)
         {
             SaveAs();
@@ -169,8 +164,8 @@ namespace BlocDeNotas
             //Obtener el texto actual
             string text = textBox.Text;
             //Almacenar en el historial
-            Text_History.Enqueue(text);
-            if(Text_History != null)
+ 
+            if(text != null)
             {
                 //activar botones cuando se ingresa texto, debido a que deshacer necesita que haya texto
                 //tambien cortar, pues necesita que cortar, al igual que copiar
@@ -215,6 +210,8 @@ namespace BlocDeNotas
                 MessageBox.Show("No se pudo acceder al portapapeles. Inténtalo de nuevo más tarde.");
             }
 
+
+            
         }
 
         private void Menu_UndoButton_Click(object sender, EventArgs e)
