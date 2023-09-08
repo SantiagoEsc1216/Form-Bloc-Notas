@@ -16,7 +16,9 @@ namespace BlocDeNotas
         OpenFileDialog OFD= new OpenFileDialog(); //Nos ayudara abrir un archivo 
         SaveFileDialog SFD = new SaveFileDialog(); //Nos ayudara a guardar como un archivo
         string FileName; //Guardara el nombre del archivo que este abierto
-
+        VentanaDeBusqueda Search_Windows; //La otra ventana
+        List<int> index_of_Searchs = new List<int>();
+        string Search_String = null; 
         public Principal()
         {
             InitializeComponent();
@@ -33,6 +35,8 @@ namespace BlocDeNotas
                 tool_PasteButton.Enabled = false;
                 Menu_PasteButton.Enabled = false;
             }
+
+             Search_Windows = new VentanaDeBusqueda(this);
         }
 
         private void toolStripComboBox1_Click(object sender, EventArgs e)
@@ -268,6 +272,80 @@ namespace BlocDeNotas
         private void Menu_CutButton_Click(object sender, EventArgs e)
         {
             Cut();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tool_SearchButton_Click(object sender, EventArgs e)
+        {
+            Search_String = tool_SearchBox.Text;
+            //Generar la lista de indices
+            index_of_Searchs = Index_Generator(tool_SearchBox.Text);
+            //Mandar los datos a la otra ventana
+            Search_Windows.getDatas(tool_SearchBox.Text, index_of_Searchs);
+            //Abrir la ventana
+            Search_Windows.ShowDialog(this);
+            Search_Windows.Focus();
+
+            
+        }
+        private List<int> Index_Generator(string data)
+        {
+            //Lista que guardara los indices de la palabra encontrada 
+            List<int> index_list = new List<int>();
+            bool end_Signal = true; //Sirve para controlar el fin del ciclo While
+            int actual_index = -1;
+            int index;
+            while (end_Signal)
+            {
+                index = textBox.Text.IndexOf(data,actual_index+1);
+                
+                if(index == -1) //no encontro la palabra
+                {
+                    //mandar señal para terminar ciclo 
+                    end_Signal = false;
+                }
+                else
+                {
+                    //Añadir el indice a la lista 
+                    index_list.Add(index);
+                    //Actualizar indices 
+                    actual_index = index;
+                }
+            }
+
+            return index_list;
+        }
+
+        public void Illuminate_text(int index)
+        {
+            //Iliminar la seleccion actual 
+            textBox.SelectionStart = index;
+            textBox.SelectionLength = Search_String.Length;
+            //textBox.Focus();
+            this.Focus();
+        }
+
+        private void Menu_SearchButton_Click(object sender, EventArgs e)
+        {
+            Search_String = Menu_SearchBox.Text;
+            //Generar la lista de indices
+            index_of_Searchs = Index_Generator(Menu_SearchBox.Text);
+            //Mandar los datos a la otra ventana
+            Search_Windows.getDatas(Menu_SearchBox.Text, index_of_Searchs);
+            //Abrir la ventana
+            Search_Windows.Show(this);
+            //Search_Windows.Focus();
+        }
+
+        public void Update_Search(string Text)
+        {
+            Search_String = Text;
+            Search_Windows.getDatas(Search_String,Index_Generator(Text));
+            Illuminate_text(0);
         }
     }
 }
