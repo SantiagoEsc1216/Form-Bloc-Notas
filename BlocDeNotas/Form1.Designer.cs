@@ -136,7 +136,7 @@ namespace BlocDeNotas
             // 
             this.Menu_UndoButton.Enabled = false;
             this.Menu_UndoButton.Name = "Menu_UndoButton";
-            this.Menu_UndoButton.Size = new System.Drawing.Size(180, 22);
+            this.Menu_UndoButton.Size = new System.Drawing.Size(122, 22);
             this.Menu_UndoButton.Text = "Deshacer";
             this.Menu_UndoButton.Click += new System.EventHandler(this.Menu_UndoButton_Click);
             // 
@@ -144,7 +144,7 @@ namespace BlocDeNotas
             // 
             this.Menu_CutButton.Enabled = false;
             this.Menu_CutButton.Name = "Menu_CutButton";
-            this.Menu_CutButton.Size = new System.Drawing.Size(180, 22);
+            this.Menu_CutButton.Size = new System.Drawing.Size(122, 22);
             this.Menu_CutButton.Text = "Cortar";
             this.Menu_CutButton.Click += new System.EventHandler(this.Menu_CutButton_Click);
             // 
@@ -152,14 +152,14 @@ namespace BlocDeNotas
             // 
             this.Menu_CopyButton.Enabled = false;
             this.Menu_CopyButton.Name = "Menu_CopyButton";
-            this.Menu_CopyButton.Size = new System.Drawing.Size(180, 22);
+            this.Menu_CopyButton.Size = new System.Drawing.Size(122, 22);
             this.Menu_CopyButton.Text = "Copiar";
             this.Menu_CopyButton.Click += new System.EventHandler(this.Menu_CopyButton_Click);
             // 
             // Menu_PasteButton
             // 
             this.Menu_PasteButton.Name = "Menu_PasteButton";
-            this.Menu_PasteButton.Size = new System.Drawing.Size(180, 22);
+            this.Menu_PasteButton.Size = new System.Drawing.Size(122, 22);
             this.Menu_PasteButton.Text = "Pegar";
             this.Menu_PasteButton.Click += new System.EventHandler(this.Menu_PasteButton_Click);
             // 
@@ -178,7 +178,8 @@ namespace BlocDeNotas
             this.Menu_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Menu_SearchBox.Name = "Menu_SearchBox";
             this.Menu_SearchBox.Size = new System.Drawing.Size(100, 23);
-            this.Menu_SearchBox.Text = "Ingrese texto";
+            this.Menu_SearchBox.Text = "Buscar...";
+            this.Menu_SearchBox.Click += new System.EventHandler(this.Menu_SearchBox_Click);
             this.Menu_SearchBox.TextChanged += new System.EventHandler(this.Menu_SearchBox_TextChanged);
             // 
             // Menu_SearchButton
@@ -335,6 +336,7 @@ namespace BlocDeNotas
             this.tool_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tool_SearchBox.Name = "tool_SearchBox";
             this.tool_SearchBox.Size = new System.Drawing.Size(100, 32);
+            this.tool_SearchBox.Text = "Buscar...";
             this.tool_SearchBox.Click += new System.EventHandler(this.tool_SearchBox_Click);
             this.tool_SearchBox.TextChanged += new System.EventHandler(this.tool_SearchBox_TextChanged);
             // 

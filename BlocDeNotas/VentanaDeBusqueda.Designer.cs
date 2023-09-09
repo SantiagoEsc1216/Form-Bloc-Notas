@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VentanaDeBusqueda));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.Result_Label = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.Search_TextBox = new System.Windows.Forms.ToolStripTextBox();
             this.Prev_button = new System.Windows.Forms.ToolStripButton();
             this.Search_button = new System.Windows.Forms.ToolStripButton();
             this.Next_button = new System.Windows.Forms.ToolStripButton();
-            this.Search_TextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.Result_Label = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +50,13 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // Result_Label
+            // 
+            this.Result_Label.Enabled = false;
+            this.Result_Label.Name = "Result_Label";
+            this.Result_Label.Size = new System.Drawing.Size(152, 17);
+            this.Result_Label.Text = "Coincidencias encontradas:";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -63,6 +70,13 @@
             this.toolStrip1.Size = new System.Drawing.Size(368, 38);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // Search_TextBox
+            // 
+            this.Search_TextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Search_TextBox.Name = "Search_TextBox";
+            this.Search_TextBox.Size = new System.Drawing.Size(250, 38);
+            this.Search_TextBox.Text = "Buscar";
             // 
             // Prev_button
             // 
@@ -84,6 +98,7 @@
             this.Search_button.Name = "Search_button";
             this.Search_button.Size = new System.Drawing.Size(35, 35);
             this.Search_button.Text = "Buscar";
+            this.Search_button.Click += new System.EventHandler(this.Search_Button_Click);
             // 
             // Next_button
             // 
@@ -96,20 +111,6 @@
             this.Next_button.Text = "Siguiente";
             this.Next_button.Click += new System.EventHandler(this.Next_button_Click);
             // 
-            // Search_TextBox
-            // 
-            this.Search_TextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Search_TextBox.Name = "Search_TextBox";
-            this.Search_TextBox.Size = new System.Drawing.Size(250, 38);
-            this.Search_TextBox.Text = "Buscar";
-            // 
-            // Result_Label
-            // 
-            this.Result_Label.Enabled = false;
-            this.Result_Label.Name = "Result_Label";
-            this.Result_Label.Size = new System.Drawing.Size(152, 17);
-            this.Result_Label.Text = "Coincidencias encontradas:";
-            // 
             // VentanaDeBusqueda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -120,6 +121,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VentanaDeBusqueda";
             this.Text = "Ventana De Busqueda";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VentanaDeBusqueda_FormClosed);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

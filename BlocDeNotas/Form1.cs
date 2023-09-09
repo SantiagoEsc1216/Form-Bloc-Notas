@@ -230,7 +230,7 @@ namespace BlocDeNotas
 
         private void tool_SearchBox_Click(object sender, EventArgs e)
         {
-
+            tool_SearchBox.Clear();
         }
 
         private void tool_SearchBox_TextChanged(object sender, EventArgs e)
@@ -279,19 +279,7 @@ namespace BlocDeNotas
 
         }
 
-        private void tool_SearchButton_Click(object sender, EventArgs e)
-        {
-            Search_String = tool_SearchBox.Text;
-            //Generar la lista de indices
-            index_of_Searchs = Index_Generator(tool_SearchBox.Text);
-            //Mandar los datos a la otra ventana
-            Search_Windows.getDatas(tool_SearchBox.Text, index_of_Searchs);
-            //Abrir la ventana
-            Search_Windows.ShowDialog(this);
-            Search_Windows.Focus();
-
-            
-        }
+        
         private List<int> Index_Generator(string data)
         {
             //Lista que guardara los indices de la palabra encontrada 
@@ -338,14 +326,42 @@ namespace BlocDeNotas
             Search_Windows.getDatas(Menu_SearchBox.Text, index_of_Searchs);
             //Abrir la ventana
             Search_Windows.Show(this);
+            this.Focus();
             //Search_Windows.Focus();
+        }
+        private void tool_SearchButton_Click(object sender, EventArgs e)
+        {
+            Search_String = tool_SearchBox.Text;
+            //Generar la lista de indices
+            index_of_Searchs = Index_Generator(tool_SearchBox.Text);
+            //Mandar los datos a la otra ventana
+            Search_Windows.getDatas(tool_SearchBox.Text, index_of_Searchs);
+            //Abrir la ventana
+            Search_Windows.Show(this);
+            this.Focus();
+            //Search_Windows.Focus();
+
+
         }
 
         public void Update_Search(string Text)
         {
             Search_String = Text;
-            Search_Windows.getDatas(Search_String,Index_Generator(Text));
-            Illuminate_text(0);
+            index_of_Searchs = Index_Generator(Text);
+            Search_Windows.getDatas(Search_String,index_of_Searchs);
+            Illuminate_text(index_of_Searchs[0]);
+        }
+        public void Delete_SearchDatas()
+        {
+            Search_String = "";
+            Menu_SearchBox.Text = null;
+            tool_SearchBox.Text = null;
+            index_of_Searchs.Clear();
+        }
+
+        private void Menu_SearchBox_Click(object sender, EventArgs e)
+        {
+            Menu_SearchBox.Clear();
         }
     }
 }

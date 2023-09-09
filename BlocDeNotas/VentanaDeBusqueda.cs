@@ -42,17 +42,25 @@ namespace BlocDeNotas
                 actual_index++;
                 principal.Illuminate_text(index_list[actual_index]);
             }
+            else
+            {
+                principal.Illuminate_text(index_list[actual_index]);
+            }
         }
 
         private void Prev_button_Click(object sender, EventArgs e)
         {
             //Actualizar indice si aun se puede
-            if (actual_index - 1 >= 0)
+            
+            if(actual_index > 0)
             {
                 actual_index--;
                 principal.Illuminate_text(index_list[actual_index]);
             }
-            
+            else
+            {
+                principal.Illuminate_text(index_list[actual_index]);
+            }
                
         }
 
@@ -61,11 +69,23 @@ namespace BlocDeNotas
             index_list = index;
             text_Searched = Text;
             //Actualizar el texto de la caja de texto
-            Search_TextBox.Text = text_Searched;
+            if (Search_TextBox != null)
+            {
+                Search_TextBox.Text = text_Searched;
+            }
             //Actualizar las coincidencias encontradas
             Result_Label.Text = "Coincidencias encontradas: "+index_list.Count;
             //Iluminar la seleccion
-            principal.Illuminate_text(actual_index);
+            principal.Illuminate_text(index_list[actual_index]);
+        }
+
+        private void VentanaDeBusqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            principal.Delete_SearchDatas();
+            text_Searched = null;
+            index_list.Clear();
+            actual_index = 0;
+            
         }
     }
 }
