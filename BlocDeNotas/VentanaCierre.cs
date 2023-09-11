@@ -29,7 +29,6 @@ namespace BlocDeNotas
         {
             //Guarda el archivo
             principal.Save();
-            principal.exit = true;
             this.Close();
         }
 

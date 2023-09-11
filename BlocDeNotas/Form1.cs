@@ -18,7 +18,6 @@ namespace BlocDeNotas
         VentanaDeBusqueda Search_Windows; //La otra ventana
         List<int> index_of_Searchs = new List<int>();
         string Search_String = null;
-        public bool exit = false;
         string Original_Version = null; //Almacena la ultima version del archivo guardado
         public Principal()
         {
@@ -383,11 +382,15 @@ namespace BlocDeNotas
 
         private void Principal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Confirm();
-            if(exit==true) {
-                Search_Windows.Dispose();
-                Application.Exit();
+            if (textBox.Text != Original_Version)
+            {
+                VentanaCierre Close_Windows;
+                Close_Windows = new VentanaCierre(this);
+                Close_Windows.ShowDialog();
+                Close_Windows.Close();
             }
+            //Search_Windows.Dispose();
+            //Application.Exit();
             
         }
 
@@ -398,7 +401,8 @@ namespace BlocDeNotas
             {
                 VentanaCierre Close_Windows;
                 Close_Windows = new VentanaCierre(this);
-                Close_Windows.Show();
+                Close_Windows.ShowDialog();
+                Close_Windows.Close();  
             }
             
         }
