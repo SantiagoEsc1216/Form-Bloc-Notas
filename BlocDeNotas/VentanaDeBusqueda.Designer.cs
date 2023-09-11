@@ -121,6 +121,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VentanaDeBusqueda";
             this.Text = "Ventana De Busqueda";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VentanaDeBusqueda_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VentanaDeBusqueda_FormClosed);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

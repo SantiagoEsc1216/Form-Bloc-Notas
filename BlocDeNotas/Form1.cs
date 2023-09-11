@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
 namespace BlocDeNotas
 {
     public partial class Principal : Form
@@ -114,7 +113,11 @@ namespace BlocDeNotas
         }
         private void Undo()
         {
-            textBox.Undo();
+            if (textBox.CanUndo)
+            {
+                textBox.Undo();
+                textBox.ClearUndo();
+            }
             if (textBox.Text == null)
             {
                 tool_UndoButton.Enabled = false;
@@ -287,7 +290,7 @@ namespace BlocDeNotas
             bool end_Signal = true; //Sirve para controlar el fin del ciclo While
             int actual_index = -1;
             int index;
-            while (end_Signal)
+            while (end_Signal && actual_index < textBox.TextLength)
             {
                 index = textBox.Text.IndexOf(data,actual_index+1);
                 
@@ -299,7 +302,7 @@ namespace BlocDeNotas
                 else
                 {
                     //Añadir el indice a la lista 
-                    index_list.Add(index);
+                    index_list.Add(index); 
                     //Actualizar indices 
                     actual_index = index;
                 }
@@ -349,7 +352,11 @@ namespace BlocDeNotas
             Search_String = Text;
             index_of_Searchs = Index_Generator(Text);
             Search_Windows.getDatas(Search_String,index_of_Searchs);
-            Illuminate_text(index_of_Searchs[0]);
+            if (index_of_Searchs.Count > 0)
+            {
+                Illuminate_text(index_of_Searchs[0]);
+            }
+            
         }
         public void Delete_SearchDatas()
         {
@@ -362,6 +369,12 @@ namespace BlocDeNotas
         private void Menu_SearchBox_Click(object sender, EventArgs e)
         {
             Menu_SearchBox.Clear();
+        }
+
+        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Search_Windows.Dispose();
+            Application.Exit();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace BlocDeNotas
 {
     public partial class VentanaDeBusqueda : Form
     {
-        string text_Searched = null; 
+        string text_Searched = null;
         List<int> index_list = new List<int>();
         int actual_index = 0;
         Principal principal = null;
@@ -44,24 +44,24 @@ namespace BlocDeNotas
             }
             else
             {
-                principal.Illuminate_text(index_list[actual_index]);
+                iluminateText(index_list, actual_index);
             }
         }
 
         private void Prev_button_Click(object sender, EventArgs e)
         {
             //Actualizar indice si aun se puede
-            
-            if(actual_index > 0)
+
+            if (actual_index > 0)
             {
                 actual_index--;
-                principal.Illuminate_text(index_list[actual_index]);
+                iluminateText(index_list, actual_index);
             }
             else
             {
-                principal.Illuminate_text(index_list[actual_index]);
+                iluminateText(index_list, actual_index);
             }
-               
+
         }
 
         public void getDatas(string Text, List<int> index)
@@ -69,23 +69,38 @@ namespace BlocDeNotas
             index_list = index;
             text_Searched = Text;
             //Actualizar el texto de la caja de texto
-            if (Search_TextBox != null)
+            if (Text != null)
             {
                 Search_TextBox.Text = text_Searched;
             }
             //Actualizar las coincidencias encontradas
-            Result_Label.Text = "Coincidencias encontradas: "+index_list.Count;
+            Result_Label.Text = "Coincidencias encontradas: " + index_list.Count;
             //Iluminar la seleccion
-            principal.Illuminate_text(index_list[actual_index]);
+           
         }
 
         private void VentanaDeBusqueda_FormClosed(object sender, FormClosedEventArgs e)
         {
-            principal.Delete_SearchDatas();
+          /*  principal.Delete_SearchDatas();
             text_Searched = null;
             index_list.Clear();
-            actual_index = 0;
-            
+            actual_index = 0;*/
+
+        }
+
+        private void VentanaDeBusqueda_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+            principal.Update_Search(Search_TextBox.Text);
+        }
+
+        private void iluminateText(List<int> list, int index)
+        {
+            if (index_list.Count > index)
+            {
+                principal.Illuminate_text(list[index]);
+            }
         }
     }
 }

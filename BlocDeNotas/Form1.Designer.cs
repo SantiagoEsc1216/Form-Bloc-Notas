@@ -186,7 +186,7 @@ namespace BlocDeNotas
             // 
             this.Menu_SearchButton.Enabled = false;
             this.Menu_SearchButton.Name = "Menu_SearchButton";
-            this.Menu_SearchButton.Size = new System.Drawing.Size(180, 22);
+            this.Menu_SearchButton.Size = new System.Drawing.Size(160, 22);
             this.Menu_SearchButton.Text = "Buscar";
             this.Menu_SearchButton.Click += new System.EventHandler(this.Menu_SearchButton_Click);
             // 
@@ -378,6 +378,7 @@ namespace BlocDeNotas
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Principal";
             this.Text = "Bloc de notas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Principal_FormClosing);
             this.Load += new System.EventHandler(this.Principal_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
