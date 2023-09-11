@@ -76,6 +76,8 @@ namespace BlocDeNotas
             //Actualizar las coincidencias encontradas
             Result_Label.Text = "Coincidencias encontradas: " + index_list.Count;
             //Iluminar la seleccion
+            iluminateText(index_list, 0);
+           
            
         }
 

@@ -17,7 +17,9 @@ namespace BlocDeNotas
         string FileName; //Guardara el nombre del archivo que este abierto
         VentanaDeBusqueda Search_Windows; //La otra ventana
         List<int> index_of_Searchs = new List<int>();
-        string Search_String = null; 
+        string Search_String = null;
+        public bool exit = false;
+        string Original_Version = null; //Almacena la ultima version del archivo guardado
         public Principal()
         {
             InitializeComponent();
@@ -36,6 +38,8 @@ namespace BlocDeNotas
             }
 
              Search_Windows = new VentanaDeBusqueda(this);
+           
+            Original_Version = textBox.Text;
         }
 
         private void toolStripComboBox1_Click(object sender, EventArgs e)
@@ -59,17 +63,20 @@ namespace BlocDeNotas
         }
         private void Open()
         {
+            Confirm();
             if(OFD.ShowDialog() == DialogResult.OK)
             {
                 textBox.Text= File.ReadAllText(OFD.FileName);
                 FileName=OFD.FileName;
                 FileName_Text.Text = "Dirección del archivo: " + FileName;
+                //Guardar el texto original 
+                Original_Version = textBox.Text;
                 
             }
                  
         }
         
-        private void Save()
+        public void Save()
         {
             if(FileName == null)
             {
@@ -80,6 +87,7 @@ namespace BlocDeNotas
             {
                 File.WriteAllText(FileName, textBox.Text);
                 Change_StatusLabel();
+                Original_Version =textBox.Text;
             }
         }
         private void SaveAs()
@@ -89,6 +97,7 @@ namespace BlocDeNotas
                 File.WriteAllText(SFD.FileName, textBox.Text);
                 FileName = SFD.FileName;
                 FileName_Text.Text = "Dirección del archivo: " + FileName;
+            Original_Version = textBox.Text;
             Change_StatusLabel();
         }
         private void Change_StatusLabel()
@@ -355,6 +364,7 @@ namespace BlocDeNotas
             if (index_of_Searchs.Count > 0)
             {
                 Illuminate_text(index_of_Searchs[0]);
+                //this.Focus();
             }
             
         }
@@ -373,8 +383,24 @@ namespace BlocDeNotas
 
         private void Principal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Search_Windows.Dispose();
-            Application.Exit();
+            Confirm();
+            if(exit==true) {
+                Search_Windows.Dispose();
+                Application.Exit();
+            }
+            
+        }
+
+        private void Confirm()
+        {
+            //No se han guardado los cambios
+            if (textBox.Text != Original_Version)
+            {
+                VentanaCierre Close_Windows;
+                Close_Windows = new VentanaCierre(this);
+                Close_Windows.Show();
+            }
+            
         }
     }
 }
