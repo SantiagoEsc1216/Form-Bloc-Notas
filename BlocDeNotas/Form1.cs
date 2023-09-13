@@ -62,17 +62,37 @@ namespace BlocDeNotas
         }
         private void Open()
         {
-            Confirm();
-            if(OFD.ShowDialog() == DialogResult.OK)
+            if (textBox.Text != Original_Version)
             {
-                textBox.Text= File.ReadAllText(OFD.FileName);
-                FileName=OFD.FileName;
+                VentanaCierre Close_Windows;
+                Close_Windows = new VentanaCierre(this);
+                Close_Windows.ShowDialog();
+                if(Close_Windows.DialogResult == DialogResult.Yes)
+                {
+                    Save();
+                    openFile();
+                }
+                else if (Close_Windows.DialogResult == DialogResult.No)
+                {
+                    openFile();
+                }
+            }
+            else
+            {
+                openFile();
+            }
+        }
+
+        private void openFile()
+        {
+            if (OFD.ShowDialog() == DialogResult.OK)
+            {
+                textBox.Text = File.ReadAllText(OFD.FileName);
+                FileName = OFD.FileName;
                 FileName_Text.Text = "Dirección del archivo: " + FileName;
                 //Guardar el texto original 
                 Original_Version = textBox.Text;
-                
             }
-                 
         }
         
         public void Save()
@@ -384,26 +404,26 @@ namespace BlocDeNotas
         {
             if (textBox.Text != Original_Version)
             {
+                e.Cancel = true;
                 VentanaCierre Close_Windows;
                 Close_Windows = new VentanaCierre(this);
                 Close_Windows.ShowDialog();
-                Close_Windows.Close();
+                if (Close_Windows.DialogResult == DialogResult.No)
+                {
+                    e.Cancel = false;
+                }else if (Close_Windows.DialogResult == DialogResult.Yes)
+                {
+                    Save();
+                    e.Cancel=true;
+                    Application.Exit();
+                }
             }
-            //Search_Windows.Dispose();
-            //Application.Exit();
             
         }
 
         private void Confirm()
         {
             //No se han guardado los cambios
-            if (textBox.Text != Original_Version)
-            {
-                VentanaCierre Close_Windows;
-                Close_Windows = new VentanaCierre(this);
-                Close_Windows.ShowDialog();
-                Close_Windows.Close();  
-            }
             
         }
     }

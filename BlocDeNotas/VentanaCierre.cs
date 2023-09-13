@@ -17,7 +17,7 @@ namespace BlocDeNotas
         public VentanaCierre(Principal p)
         {
             InitializeComponent();
-            principal = p;  
+            principal = p;
         }
 
         private void VentanaCierre_Load(object sender, EventArgs e)
@@ -28,12 +28,13 @@ namespace BlocDeNotas
         private void SaveButton_Click(object sender, EventArgs e)
         {
             //Guarda el archivo
-            principal.Save();
+            this.DialogResult = DialogResult.Yes;
             this.Close();
         }
 
         private void UnsaveButton_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.No;
             this.Close();
         }
     }
