@@ -69,8 +69,10 @@ namespace BlocDeNotas
                 Close_Windows.ShowDialog();
                 if(Close_Windows.DialogResult == DialogResult.Yes)
                 {
-                    Save();
-                    openFile();
+                    if(Save() == DialogResult.OK)
+                    {
+                        openFile();
+                    }
                 }
                 else if (Close_Windows.DialogResult == DialogResult.No)
                 {
@@ -95,29 +97,34 @@ namespace BlocDeNotas
             }
         }
         
-        public void Save()
+        public DialogResult Save()
         {
             if(FileName == null)
             {
                 //Si el nombre es nulo mandaremos a llamar SaveAs, debido a que se comenzo a escribir en el archivo en blanco
-                SaveAs();
+                return SaveAs();
             }
             else
             {
                 File.WriteAllText(FileName, textBox.Text);
                 Change_StatusLabel();
                 Original_Version =textBox.Text;
+                return DialogResult.None;
             }
         }
-        private void SaveAs()
+        private DialogResult SaveAs()
         {
             //Guardar como 
-            if (SFD.ShowDialog() == DialogResult.OK)
+            DialogResult result = SFD.ShowDialog();
+            if (result == DialogResult.OK)
+            {
                 File.WriteAllText(SFD.FileName, textBox.Text);
                 FileName = SFD.FileName;
                 FileName_Text.Text = "Dirección del archivo: " + FileName;
-            Original_Version = textBox.Text;
-            Change_StatusLabel();
+                Original_Version = textBox.Text;
+                Change_StatusLabel();
+            }
+            return result;
         }
         private void Change_StatusLabel()
         {
@@ -411,11 +418,12 @@ namespace BlocDeNotas
                 if (Close_Windows.DialogResult == DialogResult.No)
                 {
                     e.Cancel = false;
-                }else if (Close_Windows.DialogResult == DialogResult.Yes)
+                } else if (Close_Windows.DialogResult == DialogResult.Yes)
                 {
-                    Save();
-                    e.Cancel=true;
-                    Application.Exit();
+                    if(Save() == DialogResult.OK)
+                    {
+                        e.Cancel = false;
+                    }
                 }
             }
             
