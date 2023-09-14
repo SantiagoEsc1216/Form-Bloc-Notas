@@ -109,7 +109,7 @@ namespace BlocDeNotas
                 File.WriteAllText(FileName, textBox.Text);
                 Change_StatusLabel();
                 Original_Version =textBox.Text;
-                return DialogResult.None;
+                return DialogResult.OK;
             }
         }
         private DialogResult SaveAs()
